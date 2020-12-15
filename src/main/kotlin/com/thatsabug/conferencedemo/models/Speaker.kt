@@ -22,4 +22,23 @@ data class Speaker(
     @ManyToMany(mappedBy = "speakers")
     @JsonIgnoreProperties("speakers")
     val sessions: List<Session> = mutableListOf()
-)
+) {
+
+    override fun toString() = "ID: $speaker_id | $first_name $last_name "
+
+    fun applySpeaker(newSpeaker: Speaker) =
+        Speaker(
+            speaker_id = speaker_id,
+            first_name = newSpeaker.first_name,
+            last_name = newSpeaker.last_name,
+            speaker_bio = newSpeaker.speaker_bio,
+            title = newSpeaker.title,
+            company = newSpeaker.company,
+            speaker_photo = newSpeaker.speaker_photo,
+            sessions = newSpeaker.sessions
+        )
+
+    companion object {
+        const val idAttribute: String = "speaker_id"
+    }
+}

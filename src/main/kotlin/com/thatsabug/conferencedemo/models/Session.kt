@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "sessions")
-data class Session (
+data class  Session (
     @Id @GeneratedValue
     val session_id: Long = 0,
     val session_name: String = "",
@@ -14,8 +14,12 @@ data class Session (
 
     @ManyToMany
     @JoinTable(name = "session_speakers",
-        joinColumns = [JoinColumn(name = "session_id")],
-        inverseJoinColumns = [JoinColumn(name = "speaker_id")])
+        joinColumns = [JoinColumn(name = idAttribute)],
+        inverseJoinColumns = [JoinColumn(name = Speaker.idAttribute)])
     @JsonIgnoreProperties("sessions")
     val speakers: List<Speaker> = mutableListOf()
-)
+) {
+    companion object {
+        const val idAttribute: String = "session_id"
+    }
+}

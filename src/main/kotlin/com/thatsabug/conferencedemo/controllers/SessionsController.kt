@@ -1,11 +1,11 @@
 package com.thatsabug.conferencedemo.controllers
 
+import com.fasterxml.jackson.databind.util.BeanUtil
+import com.thatsabug.conferencedemo.models.Session
 import com.thatsabug.conferencedemo.repositories.SessionRepository
+import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/sessions")
@@ -21,5 +21,20 @@ class SessionsController (
     fun get(@PathVariable id: Long) =
         sessionRepository.getOne(id)
 
+    @PostMapping
+    fun create(@RequestBody session: Session) =
+        sessionRepository.saveAndFlush(session)
 
+    @RequestMapping(value = ["{id}"], method = [RequestMethod.DELETE])
+    fun delete(@PathVariable id: Long) =
+        sessionRepository.deleteById(id)
+        // TODO - Delete speaker if he/she doesn't have sessions
+
+    @RequestMapping(value = ["{id}"], method = [RequestMethod.PUT])
+    fun update(@PathVariable id: Long, @RequestBody newSession: Session) {
+        // TODO - Update session
+        NotImplementedError("TODO - Implement Update session")
+    }
+
+    // TODO - Implement PATCH, so to update partially
 }
