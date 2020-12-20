@@ -5,6 +5,7 @@ import com.thatsabug.conferencedemo.models.Session
 import com.thatsabug.conferencedemo.repositories.SessionRepository
 import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -22,6 +23,7 @@ class SessionsController (
         sessionRepository.getOne(id)
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody session: Session) =
         sessionRepository.saveAndFlush(session)
 

@@ -6,7 +6,8 @@ import javax.persistence.*
 @Entity
 @Table(name = "sessions")
 data class  Session (
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val session_id: Long = 0,
     val session_name: String = "",
     val session_description: String ="",

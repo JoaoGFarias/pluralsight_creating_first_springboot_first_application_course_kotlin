@@ -1,9 +1,7 @@
 package com.thatsabug.conferencedemo.controllers
 
-import com.thatsabug.conferencedemo.models.Session
 import com.thatsabug.conferencedemo.models.Speaker
 import com.thatsabug.conferencedemo.repositories.SpeakerRepository
-import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
@@ -24,6 +22,7 @@ class SpeakersController (
     @RequestMapping(value = ["{id}"], method = [RequestMethod.DELETE])
     fun delete(@PathVariable id: Long) =
         speakersRepository.deleteById(id)
+    // TODO - Delete Session_Schedule
     // TODO - Delete speaker if he/she doesn't have sessions
 
     @RequestMapping(value = ["{id}"], method = [RequestMethod.PUT])
