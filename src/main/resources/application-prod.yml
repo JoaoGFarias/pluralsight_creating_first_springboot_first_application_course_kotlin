@@ -1,0 +1,8 @@
+logging:
+  level:
+    org:
+      WARN
+    com:
+      zaxxer:
+        hikari:
+          WARN
