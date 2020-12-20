@@ -1,6 +1,5 @@
 package com.thatsabug.conferencedemo.controllers
 
-import com.thatsabug.conferencedemo.models.Session
 import com.thatsabug.conferencedemo.models.Speaker
 import com.thatsabug.conferencedemo.repositories.SpeakerRepository
 import org.springframework.beans.factory.annotation.Autowired
