@@ -7,7 +7,8 @@ import javax.persistence.*
 @Entity
 @Table(name = "speakers")
 data class Speaker(
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val speaker_id: Long = 0,
     val first_name: String = "",
     val last_name: String = "",

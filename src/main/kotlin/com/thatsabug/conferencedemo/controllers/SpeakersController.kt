@@ -1,8 +1,10 @@
 package com.thatsabug.conferencedemo.controllers
 
+import com.thatsabug.conferencedemo.models.Session
 import com.thatsabug.conferencedemo.models.Speaker
 import com.thatsabug.conferencedemo.repositories.SpeakerRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -18,6 +20,11 @@ class SpeakersController (
     @RequestMapping("{id}")
     fun get(@PathVariable id: Long) =
         speakersRepository.getOne(id)
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    fun create(@RequestBody speaker: Speaker) =
+        speakersRepository.saveAndFlush(speaker)
 
     @RequestMapping(value = ["{id}"], method = [RequestMethod.DELETE])
     fun delete(@PathVariable id: Long) =
