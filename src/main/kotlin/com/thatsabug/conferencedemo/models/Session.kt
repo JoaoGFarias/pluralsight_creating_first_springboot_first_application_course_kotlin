@@ -20,6 +20,16 @@ data class  Session (
     @JsonIgnoreProperties("sessions")
     val speakers: List<Speaker> = mutableListOf()
 ) {
+
+    fun applySession(newSession: Session) =
+        Session(
+            session_id = session_id,
+            session_name = newSession.session_name,
+            session_description = newSession.session_description,
+            session_length = newSession.session_length,
+            speakers = newSession.speakers,
+        )
+
     companion object {
         const val idAttribute: String = "session_id"
     }

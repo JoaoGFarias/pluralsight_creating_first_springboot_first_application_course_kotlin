@@ -33,9 +33,10 @@ class SessionsController (
         // TODO - Delete speaker if he/she doesn't have sessions
 
     @RequestMapping(value = ["{id}"], method = [RequestMethod.PUT])
-    fun update(@PathVariable id: Long, @RequestBody newSession: Session) {
-        // TODO - Update session
-        NotImplementedError("TODO - Implement Update session")
+    fun update(@PathVariable id: Long, @RequestBody newSession: Session): Session {
+        val oldSession = sessionRepository.getOne(id)
+        val updatedSpeaker = oldSession.applySession(newSession)
+        return sessionRepository.saveAndFlush(updatedSpeaker)
     }
 
     // TODO - Implement PATCH, so to update partially
