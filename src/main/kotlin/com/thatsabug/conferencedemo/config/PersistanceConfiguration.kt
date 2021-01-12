@@ -7,11 +7,11 @@ import javax.sql.DataSource
 
 @Configuration
 class PersistenceConfiguration {
-//    @Bean
-//    fun dataSource() : DataSource =
-//        DataSourceBuilder.create()
-//            .url("jdbc:postgresql://localhost:5432/conference_app")
-//            .username("postgres")
-//            .password("Welcome")
-//            .build()
+    @Bean
+    fun dataSource() : DataSource =
+        DataSourceBuilder.create()
+            .url("jdbc:postgresql://localhost:5432/conference_app")
+            .username("postgres")
+            .password("Welcome")
+            .build()
 }
